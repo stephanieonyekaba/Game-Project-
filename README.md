@@ -21,3 +21,8 @@ technologies used: css, js, html
 
 
 ![image](/image/IMAGE1.png "Text to show on mouseover")
+
+![image](/image/IMAGE2.png "Text to show on mouseover")
+
+
+![image](/image/IMAGE3.png "Text to show on mouseover")
