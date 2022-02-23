@@ -26,3 +26,6 @@ technologies used: css, js, html
 
 
 ![image](/image/IMAGE3.png "Text to show on mouseover")
+
+
+Future goals:
