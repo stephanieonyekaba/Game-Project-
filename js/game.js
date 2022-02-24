@@ -19,12 +19,10 @@ let hideHomeScreen = () => {
     } else {
         x.style.display = "none" }
 
-   
     guessTheCircle.classList.add('guessTheCircle')
     guessTheCircle.innerText = "Which Color Doesnt Match ?"
     smallContainer.appendChild(guessTheCircle)
     guessTheCircle.id = "guessTheCircleHeading";
-
 
     clock.classList.add('clock')
     smallContainer.appendChild(clock)
@@ -35,8 +33,8 @@ let hideHomeScreen = () => {
     container.appendChild(timeIsUpBoard);
     timeIsUpBoard.id = "timeIsUpBoard";
 
-
     }
+
     let counter = 5; 
 //countdown timer 
 const startCountDown = () => {
@@ -56,28 +54,71 @@ const startCountDown = () => {
     }, 1000);
     }
  
-  startCountDown(5);
+//   startCountDown(5);
+
+//color levels
+const blueColor = "rgb(18, 142, 230)"
+const offBlueColor = "rgb(88, 138, 245)"
+
+const greenColor = "rgb(53, 219, 20)"
+const offGreenColor = "rgb(56, 199, 28)"
+
+const orangeColor = "rgb(237, 168, 83)"
+const offOrangeColor = "rgb(240, 177, 101)"
 
 
 //made circles and added color to them
-const makeCircles = () => {
+//num is the number of circles I want 
+//level is a number that represents what level the game is on 
+//example: level1 calls makeCircles like this: makeCircles(4, 1)
+//example: level2 calls makeCircles like this: makeCircles(6, 2)
 
-        for(let i = 0; i < 4; i++) {
+
+const makeCircles = (num, level) => {
+    console.log("makeCircles")
+    //loop until desired number of circles 
+        for(let i = 0; i < num; i++) {
+            //this is the counter for my timer
             counter = 5;
-            const circle = document.createElement('div')
+            //the next three lines make and add my circles
+            console.log("for loop")
+            let circle = document.createElement('div')
             circle.classList.add('circle')
             circleContainer.appendChild(circle)
+            smallContainer.appendChild(circleContainer)
+            //picks a circle to make different
             if(i == 2) {
-            circle.style.backgroundColor = "rgb(123, 175, 212)"; 
-            circle.addEventListener("click", clickCircle1Correct);
-            
-            } else {
-            circle.addEventListener("click", clickCircle1Wrong);
-            }
-            
-          
+                if (level == 1) {
+                    //adds different background color to circle
+                    circle.style.backgroundColor = offBlueColor;
+                    circle.addEventListener("click", clickCircle1Correct);
+                    } else {
+                    circle.style.backgroundColor = blueColor; 
+                    circle.addEventListener("click", clickCircle1Wrong);  
+                    }
+                 if (level == 2) {
+                    circle.style.backgroundColor = offGreenColor;
+                    circle.addEventListener("click", clickCircle1Correct);
+                    } else {
+                    circle.style.backgroundColor = greenColor;
+                    circle.addEventListener("click", clickCircle1Wrong);  
+                }
+            } 
         }
-    }
+
+       
+    
+        
+
+//create a function that runs the startgame 
+//this function will be what calls makes circles for each level 
+//it also will determine 
+
+const startGame = (e) => {
+    console.log("startGame")
+    makeCircles(4, 1);
+    
+}
 
 
 
@@ -85,21 +126,18 @@ const makeCircles = () => {
 
 
 
-document.getElementById('button').addEventListener("click", makeCircles)
+//this calls start game function. change to start game
+document.getElementById('start-button').addEventListener("click", startGame)
 
 
 
 clickCircle1Correct = () => {
-counter = 100;
-smallContainer.innerHTML="";
-const correctAnswer1 = document.createElement('div');
-correctAnswer1.classList.add('correctAnswer1');
-smallContainer.appendChild(correctAnswer1)
-correctAnswer1.innerText="CORRECT";
-
-
-round = 2
-
+    counter = 100;
+    smallContainer.innerHTML="";
+    const correctAnswer1 = document.createElement('div');
+    correctAnswer1.classList.add('correctAnswer1');
+    smallContainer.appendChild(correctAnswer1)
+    correctAnswer1.innerText="CORRECT";
 }
 
 clickCircle1Wrong = () => {
@@ -110,4 +148,5 @@ clickCircle1Wrong = () => {
     smallContainer.appendChild(wrongAnswer1)
     wrongAnswer1.innerText="WRONG!";
     
+}
 }
