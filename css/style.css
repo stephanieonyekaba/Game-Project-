@@ -49,13 +49,14 @@ Containers  */
 #timeIsUpBoard {
     display: none;
     align-items:center;
-    justify-content:center;
-    background-color: rgb(52, 105, 219);
+    justify-content: center;
+    background-color: rgb(178, 184, 197);
     color: black;
     width: 850px;
     height: 600px;
     border-radius: 75px;
     font-size: 50px;
+    
 }
 
 
@@ -68,7 +69,7 @@ Containers  */
     justify-content: center;
     flex-wrap: wrap;  
     flex-direction: row; 
-    width: 400px;
+    width: 600px;
     align-content: space-around;
 }
 
@@ -112,6 +113,12 @@ clicking the circles will either produce wrong or right answer  */
     font-size: 50px;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 
+#nextLevelButton {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+}

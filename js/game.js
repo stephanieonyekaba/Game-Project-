@@ -5,9 +5,13 @@ let container = document.getElementById('container')
 const circleContainer = document.getElementById('circleContainer');
 const smallContainer = document.getElementById('smallContainer');
 const guessTheCircle = document.createElement('div')
-const clock = document.createElement('div')
+let clock = document.createElement('div')
 let timeIsUpBoard = document.createElement('div')
-let round = 1;
+let points = 0;
+let circle
+let correctAnswer1
+let wrongAnswer1
+
 
 
 //created an event listener to hide the homescreen when "start game" is clicked
@@ -19,19 +23,20 @@ let hideHomeScreen = () => {
     } else {
         x.style.display = "none" }
 
-    guessTheCircle.classList.add('guessTheCircle')
-    guessTheCircle.innerText = "Which Color Doesnt Match ?"
-    smallContainer.appendChild(guessTheCircle)
-    guessTheCircle.id = "guessTheCircleHeading";
-
     clock.classList.add('clock')
     smallContainer.appendChild(clock)
     guessTheCircle.id = "clock";
+    clock.textContent = counter;
+    clock.textContent = counter;
+    
 
     timeIsUpBoard.classList.add('timeIsUpBoard')
     timeIsUpBoard.innerText = "Time is up!"
     container.appendChild(timeIsUpBoard);
     timeIsUpBoard.id = "timeIsUpBoard";
+
+ 
+
 
     }
 
@@ -40,15 +45,17 @@ let hideHomeScreen = () => {
 const startCountDown = () => {
 
       const interval = setInterval(() => {
-        clock.textContent = counter;
-        // counter--;
+        
+        counter--;
 
 
      if (counter < 0 ) {
         clearInterval(interval);
         smallContainer.style.display = "none";
         timeIsUpBoard.style.display = "flex";
+        timeIsUpBoard.textContent = "Game Over !  " + " Your Score is  " + points;
         console.log("out of time");
+
  
       } 
     }, 1000);
@@ -75,14 +82,12 @@ const offOrangeColor = "rgb(240, 177, 101)"
 
 
 const makeCircles = (num, level) => {
-    console.log("makeCircles")
     //loop until desired number of circles 
         for(let i = 0; i < num; i++) {
             //this is the counter for my timer
             counter = 5;
             //the next three lines make and add my circles
-            console.log("for loop")
-            let circle = document.createElement('div')
+            circle = document.createElement('div')
             circle.classList.add('circle')
             circleContainer.appendChild(circle)
             smallContainer.appendChild(circleContainer)
@@ -92,22 +97,31 @@ const makeCircles = (num, level) => {
                     //adds different background color to circle
                 circle.style.backgroundColor = offBlueColor;
                 circle.addEventListener("click", clickCircle1Correct);
+                
             }
             if (i == 2 && level == 2) {
                 circle.style.backgroundColor = offGreenColor;
-                circle.addEventListener("click", clickCircle1Correct);
-                
+                circle.addEventListener("click", clickCircle1Correct);  
             } 
+            if (i == 2 && level == 3) {
+                circle.style.backgroundColor = offOrangeColor;
+                circle.addEventListener("click", clickCircle1Correct);
+            }
             if(i != 2 && level == 1) {
                 circle.style.backgroundColor = blueColor; 
                 circle.addEventListener("click", clickCircle1Wrong);  
-
             } 
             if(i != 2 && level == 2) {
                 circle.style.backgroundColor = greenColor; 
                 circle.addEventListener("click", clickCircle1Wrong);  
             } 
+            if(i != 2 && level == 3) {
+                circle.style.backgroundColor = orangeColor; 
+                circle.addEventListener("click", clickCircle1Wrong);  
+            }
+            
         }
+        
 
     }  
     
@@ -117,15 +131,52 @@ const makeCircles = (num, level) => {
 //this function will be what calls makes circles for each level 
 //it also will determine 
 
+let  currentLevel = 1;
 const startGame = () => {
-    console.log("startGame")
-    makeCircles(8, 2);
+    counter = 100;
+    guessTheCircle.classList.add('guessTheCircle')
+    guessTheCircle.innerText = "Which Color Doesnt Match ?"
+    smallContainer.appendChild(guessTheCircle)
+    guessTheCircle.id = "guessTheCircleHeading";
+
+
+
+
+    if(currentLevel == 1) {
+        
+        makeCircles(4, 1)
+        currentLevel = (currentLevel + 1)
+        return currentLevel
+        
+    }
+    if(currentLevel == 2) {
+        makeCircles(6, 2)
+        currentLevel = (currentLevel + 1)
+        return
+    }
+    else if(currentLevel == 3) {
+        makeCircles(8, 3)
+    } 
+    else {
+        console.log("Game over")
+    }
+
     
 }
 
 
 
+//CLEAR LEVEL FUNCTION 
+const clearLevel = () => {
+    document.getElementsByClassName('circle')
+    while (circleContainer.firstChild) {
+    circleContainer.removeChild(circleContainer.firstChild)
+    }
 
+    smallContainer.removeChild(smallContainer.firstChild)
+    points = (points + 1)
+    return points
+}
 
 
 
@@ -134,21 +185,48 @@ document.getElementById('start-button').addEventListener("click", startGame)
 
 
 
+
+
 clickCircle1Correct = () => {
     counter = 100;
+
+    console.log(points)
     smallContainer.innerHTML="";
-    const correctAnswer1 = document.createElement('div');
+    correctAnswer1 = document.createElement('div');
     correctAnswer1.classList.add('correctAnswer1');
     smallContainer.appendChild(correctAnswer1)
     correctAnswer1.innerText="CORRECT";
+    
+
+    const nextLevelButton = document.createElement('button'); 
+    nextLevelButton.classList.add('nextLevelButton')
+    nextLevelButton.id = "nextLevelButton"
+    nextLevelButton.innerText="next"
+    correctAnswer1.appendChild(nextLevelButton)
+    document.getElementById('nextLevelButton').addEventListener("click", clearLevel)
+    document.getElementById('nextLevelButton').addEventListener("click", startGame)
+    
+  
 }
+
+
 
 clickCircle1Wrong = () => {
     counter = 100;
     smallContainer.innerHTML="";
-    const wrongAnswer1 = document.createElement('div');
+    wrongAnswer1 = document.createElement('div');
     wrongAnswer1.classList.add('wrongAnswer1');
     smallContainer.appendChild(wrongAnswer1)
     wrongAnswer1.innerText="WRONG!";
     
+    // previousLevelButton.classList.add('previousLevelButton')
+    // previousLevelButton.id = "previousLevelButton"
+    // previousLevelButton.innerText="Try Again"
+    wrongAnswer1.appendChild(previousLevelButton)
+    // document.getElementById('previousLevelButton').addEventListener("click", clearLevel)
+
+    // document.getElementById('previousLevelButton').addEventListener("click", startGame)
+    
 }
+
+
