@@ -41,7 +41,7 @@ const startCountDown = () => {
 
       const interval = setInterval(() => {
         clock.textContent = counter;
-        counter--;
+        // counter--;
 
 
      if (counter < 0 ) {
@@ -54,7 +54,7 @@ const startCountDown = () => {
     }, 1000);
     }
  
-//   startCountDown(5);
+  startCountDown(5);
 
 //color levels
 const blueColor = "rgb(18, 142, 230)"
@@ -86,27 +86,30 @@ const makeCircles = (num, level) => {
             circle.classList.add('circle')
             circleContainer.appendChild(circle)
             smallContainer.appendChild(circleContainer)
+
             //picks a circle to make different
-            if(i == 2) {
-                if (level == 1) {
+            if(i == 2 && level == 1) {
                     //adds different background color to circle
-                    circle.style.backgroundColor = offBlueColor;
-                    circle.addEventListener("click", clickCircle1Correct);
-                    } else {
-                    circle.style.backgroundColor = blueColor; 
-                    circle.addEventListener("click", clickCircle1Wrong);  
-                    }
-                 if (level == 2) {
-                    circle.style.backgroundColor = offGreenColor;
-                    circle.addEventListener("click", clickCircle1Correct);
-                    } else {
-                    circle.style.backgroundColor = greenColor;
-                    circle.addEventListener("click", clickCircle1Wrong);  
-                }
+                circle.style.backgroundColor = offBlueColor;
+                circle.addEventListener("click", clickCircle1Correct);
+            }
+            if (i == 2 && level == 2) {
+                circle.style.backgroundColor = offGreenColor;
+                circle.addEventListener("click", clickCircle1Correct);
+                
+            } 
+            if(i != 2 && level == 1) {
+                circle.style.backgroundColor = blueColor; 
+                circle.addEventListener("click", clickCircle1Wrong);  
+
+            } 
+            if(i != 2 && level == 2) {
+                circle.style.backgroundColor = greenColor; 
+                circle.addEventListener("click", clickCircle1Wrong);  
             } 
         }
 
-       
+    }  
     
         
 
@@ -114,9 +117,9 @@ const makeCircles = (num, level) => {
 //this function will be what calls makes circles for each level 
 //it also will determine 
 
-const startGame = (e) => {
+const startGame = () => {
     console.log("startGame")
-    makeCircles(4, 1);
+    makeCircles(8, 2);
     
 }
 
@@ -148,5 +151,4 @@ clickCircle1Wrong = () => {
     smallContainer.appendChild(wrongAnswer1)
     wrongAnswer1.innerText="WRONG!";
     
-}
 }
