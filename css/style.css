@@ -116,6 +116,19 @@ clicking the circles will either produce wrong or right answer  */
     flex-direction: column;
 }
 
+.youWon {
+    display: flex;
+    width: 450px;
+    height: 400px;
+    border-radius: 20%;
+    color: black;
+    background-color: rgba(128, 128, 128, 0.288);
+    font-size: 50px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 
 #nextLevelButton {
     width: 100px;
