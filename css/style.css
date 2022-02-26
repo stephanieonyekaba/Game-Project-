@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
-#button{
+#button {
     display:flex;
     width: 30%;
     justify-content: center;
