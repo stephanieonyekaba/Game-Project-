@@ -1,5 +1,6 @@
 body {
     background-color: rgba(192, 22, 22, 0.993);
+    font-size: 60px;
 }
 #h1 {
     display: flex;
@@ -41,7 +42,7 @@ Containers  */
     height: 600px;
     border-radius: 75px;
     font-size: 50px;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding: 40px;
 }
 
@@ -69,14 +70,14 @@ Containers  */
     justify-content: center;
     flex-wrap: wrap;  
     flex-direction: row; 
-    width: 600px;
+    width: 800px;
     align-content: space-around;
 }
 
 
 .circle {
-    height: 200px;
-    width: 200px;
+    height: 140px;
+    width: 140px;
     border-radius: 50%;
 }
 
@@ -99,9 +100,10 @@ clicking the circles will either produce wrong or right answer  */
     border-radius: 20%;
     color: black;
     background-color: rgba(128, 128, 128, 0.288);
-    font-size: 50px;
+    font-size: large;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 .wrongAnswer1 {
     display: flex;
@@ -110,7 +112,7 @@ clicking the circles will either produce wrong or right answer  */
     border-radius: 20%;
     color: black;
     background-color: rgba(128, 128, 128, 0.288);
-    font-size: 50px;
+    font-size: large;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -123,7 +125,7 @@ clicking the circles will either produce wrong or right answer  */
     border-radius: 20%;
     color: black;
     background-color: rgba(128, 128, 128, 0.288);
-    font-size: 50px;
+    font-size: large;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -133,5 +135,23 @@ clicking the circles will either produce wrong or right answer  */
 #nextLevelButton {
     width: 100px;
     height: 50px;
-    font-size: 20px;
+    font-size: large;
+    
+}
+
+#previousLevelButton {
+    width: 100px;
+    height: 50px;
+    font-size: large;
+}
+
+.gameOver {
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+}
+
+.guessTheCircle {
+    font-size: 40px;
+    margin: 30px;
 }

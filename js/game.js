@@ -7,6 +7,10 @@ const smallContainer = document.getElementById('smallContainer');
 const guessTheCircle = document.createElement('div')
 let clock = document.createElement('div')
 let timeIsUpBoard = document.createElement('div')
+const correctDing = new Audio('DING 2.mp3');
+const youWinAudio = new Audio('YOUWIN.wav')
+const timesUp = new Audio('TIMEISUP.wav')
+const wrongDing = new Audio('WRONG.wav')
 let points = 0;
 let circle
 let correctAnswer1
@@ -30,7 +34,7 @@ const showHomeScreen = () => {
 let hideHomeScreen = () => {
     if(hideHome.style.display == "flex") {
      hideHome.style.display = "none"; 
-     button.style.display = "none"; 
+    //  button.style.display = "none"; 
 
     } 
     else {
@@ -44,12 +48,16 @@ let hideHomeScreen = () => {
     timeIsUpBoard.innerText = "Time is up! " + " score: " + points
     container.appendChild(timeIsUpBoard);
     timeIsUpBoard.id = "timeIsUpBoard";
+    
+
+   
+
 
     }
 
+    
 
-
-    let counter = 5; 
+    let counter = 10; 
     //countdown timer 
     const startCountDown = () => {
     
@@ -63,26 +71,33 @@ let hideHomeScreen = () => {
             smallContainer.style.display = "none";
             timeIsUpBoard.style.display = "flex";
             console.log("out of time");
+            timesUp.play();
      
           } 
         }, 1000);
+        
         }
      
-      startCountDown(5);
+      startCountDown(10);
     
     
 
 
 //color levels
 const blueColor = "rgb(18, 142, 230)"
-const offBlueColor = "rgb(88, 138, 245)"
+const offBlueColor = "rgb(73, 221, 235)"
 
 const greenColor = "rgb(53, 219, 20)"
-const offGreenColor = "rgb(56, 199, 28)"
+const offGreenColor = "rgb(39, 161, 71)"
 
-const orangeColor = "rgb(237, 168, 83)"
-const offOrangeColor = "rgb(240, 177, 101)"
+const orangeColor = "rgb(237, 162, 12)"
+const offOrangeColor = "rgb(232, 185, 90)"
 
+const purpleColor = "rgb(90, 92, 224)"
+const offPurpleColor = "rgb(82, 84, 179)"
+
+const yellowColor = "rgb(207, 190, 10)"
+const offYellowColor = "rgb(255, 244, 122)"
 
 //made circles and added color to them
 //num is the number of circles I want 
@@ -95,7 +110,7 @@ const makeCircles = (num, level) => {
     //loop until desired number of circles 
         for(let i = 0; i < num; i++) {
             //this is the counter for my timer
-            counter = 5;
+            counter = 10;
             //the next three lines make and add my circles
             circle = document.createElement('div')
             circle.classList.add('circle')
@@ -109,7 +124,7 @@ const makeCircles = (num, level) => {
                 circle.addEventListener("click", clickCircle1Correct);
                 
             }
-            if (i == 2 && level == 2) {
+            if (i == 1 && level == 2) {
                 circle.style.backgroundColor = offGreenColor;
                 circle.addEventListener("click", clickCircle1Correct);  
             } 
@@ -117,11 +132,19 @@ const makeCircles = (num, level) => {
                 circle.style.backgroundColor = offOrangeColor;
                 circle.addEventListener("click", clickCircle1Correct);
             }
+            if (i == 9 && level == 4) {
+                circle.style.backgroundColor = offPurpleColor;
+                circle.addEventListener("click", clickCircle1Correct);  
+            } 
+            if (i == 0 && level == 5) {
+                circle.style.backgroundColor = offYellowColor;
+                circle.addEventListener("click", clickCircle1Correct);
+            }    
             if(i != 2 && level == 1) {
                 circle.style.backgroundColor = blueColor; 
                 circle.addEventListener("click", clickCircle1Wrong);  
             } 
-            if(i != 2 && level == 2) {
+            if(i != 1 && level == 2) {
                 circle.style.backgroundColor = greenColor; 
                 circle.addEventListener("click", clickCircle1Wrong);  
             } 
@@ -129,8 +152,14 @@ const makeCircles = (num, level) => {
                 circle.style.backgroundColor = orangeColor; 
                 circle.addEventListener("click", clickCircle1Wrong);  
             }
-            
-
+            if(i != 9 && level == 4) {
+                circle.style.backgroundColor = purpleColor; 
+                circle.addEventListener("click", clickCircle1Wrong);  
+            }
+            if(i != 0 && level == 5) {
+                circle.style.backgroundColor = yellowColor; 
+                circle.addEventListener("click", clickCircle1Wrong);  
+            }
         }
         
 
@@ -143,6 +172,23 @@ const makeCircles = (num, level) => {
         youWon.classList.add('youWon');
         smallContainer.appendChild(youWon)
         youWon.innerText="You Won! " + "Score: " + points;
+        youWinAudio.play();
+
+
+
+
+
+    const playAgain = document.createElement('button'); 
+    playAgain.classList.add('playAgain')
+    playAgain.id = "playAgain"
+    playAgain.innerText="play again"
+    youWon.appendChild(playAgain)
+    currentLevel = 1;
+    
+    document.getElementById('playAgain').addEventListener("click", clearLevel)
+
+
+    document.getElementById('playAgain').addEventListener("click", showHomeScreen)
     }
 
 //create a function that runs the startgame 
@@ -178,6 +224,16 @@ const startGame = () => {
         currentLevel = (currentLevel + 1)
         return
     } 
+    else if(currentLevel == 4) {
+        makeCircles(12, 4)
+        currentLevel = (currentLevel + 1)
+        return
+    } 
+    else if(currentLevel == 5) {
+        makeCircles(5, 5)
+        currentLevel = (currentLevel + 1)
+        return
+    } 
     else {
         youWin();
     }
@@ -195,9 +251,13 @@ const clearLevel = () => {
     circleContainer.removeChild(circleContainer.firstChild)
     }
 
+   
+
     smallContainer.removeChild(smallContainer.firstChild)
     points = (points + 1)
     return points
+
+
     
     
 }
@@ -212,8 +272,8 @@ document.getElementById('start-button').addEventListener("click", startGame)
 
 
 clickCircle1Correct = () => {
-    counter = 100;
-
+    
+    correctDing.play();
     smallContainer.innerHTML="";
     correctAnswer1 = document.createElement('div');
     correctAnswer1.classList.add('correctAnswer1');
@@ -224,11 +284,12 @@ clickCircle1Correct = () => {
     const nextLevelButton = document.createElement('button'); 
     nextLevelButton.classList.add('nextLevelButton')
     nextLevelButton.id = "nextLevelButton"
-    nextLevelButton.innerText="next"
+    nextLevelButton.innerText="Next"
     correctAnswer1.appendChild(nextLevelButton)
     document.getElementById('nextLevelButton').addEventListener("click", clearLevel)
     document.getElementById('nextLevelButton').addEventListener("click", startGame)
     
+    counter = 100;
   
 }
 
@@ -264,7 +325,8 @@ const youLose = () => {
 
 
 clickCircle1Wrong = () => {
-    counter = 100;
+    
+    
     smallContainer.innerHTML="";
     wrongAnswer1 = document.createElement('div');
     wrongAnswer1.classList.add('wrongAnswer1');
@@ -279,6 +341,13 @@ clickCircle1Wrong = () => {
     document.getElementById('previousLevelButton').addEventListener("click", clearLevel)
 
     document.getElementById('previousLevelButton').addEventListener("click", youLose)
+
+    counter = 100;
+    wrongDing.play();
     
 }
   
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("hi")
+    
+})
