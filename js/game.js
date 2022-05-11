@@ -73,12 +73,42 @@ let hideHomeScreen = () => {
         }
      
       startCountDown(10);
-    
-    
 
+
+
+
+      //these variables are our max and min for our randomizing function (0 - 255)
+const maxColor = 255
+const minColor = 0 
+
+const minShade = 0.70    
+const maxShade = 0.80
+
+const randomShade = Math.random() * (maxShade - minShade) + minShade
+console.log('THIS IS THE randshade', randomShade)
+
+      
+const randColorR = Math.floor(Math.random() * (maxColor - minColor) + minColor)
+console.log('THIS IS THE randColorR', randColorR)
+const randColorG = Math.floor(Math.random() * (maxColor - minColor) + minColor)
+const randColorB = Math.floor(Math.random() * (maxColor - minColor) + minColor)
+
+const randomSameCircle = (r, g, b) => {
+randomRGBSame = "rgb("+ r +","+ g +","+ b +")"
+randomRGBDifferent = "rgb("+ (r *  randomShade) +","+ (g * randomShade) +","+ (b * randomShade) +")"
+return randomRGBSame
+
+}
+
+
+    randomSameCircle(randColorR , randColorG , randColorB )
+    // randomDifferentCircle(randColorR , randColorG , randColorB )
+
+console.log("THIS IS THE RANDOMLY GENERATED COLOR", randomRGBSame)
+console.log("THIS IS THE RANDOMLY GENERATED DIFFERENT COLOR", randomRGBDifferent)
 
 //color levels
-const blueColor = "rgb(18, 142, 230)"
+
 const offBlueColor = "rgb(73, 221, 235)"
 
 const greenColor = "rgb(53, 219, 20)"
@@ -118,7 +148,7 @@ const makeCircles = (num, level) => {
             //picks a circle to make different
             if(i == 2 && level == 1) {
                     //adds different background color to circle
-                circle.style.backgroundColor = offBlueColor;
+                circle.style.backgroundColor = randomRGBDifferent;
                 circle.addEventListener("click", clickCircle1Correct);
                 
             }
@@ -139,7 +169,7 @@ const makeCircles = (num, level) => {
                 circle.addEventListener("click", clickCircle1Correct);
             }    
             if(i != 2 && level == 1) {
-                circle.style.backgroundColor = blueColor; 
+                circle.style.backgroundColor = randomRGBSame; 
                 circle.addEventListener("click", clickCircle1Wrong);  
             } 
             if(i != 1 && level == 2) {
@@ -204,12 +234,13 @@ const startGame = () => {
     clock.classList.add('clock')
     guessTheCircle.appendChild(clock)
 
-
+    let min = 3
+    let max = 12
+    const randomNum = Math.floor(Math.random() * (max - min) + min)
+    
     if(currentLevel == 1) {
-        let min = 3
-        let max = 12
-        const randomNum = Math.floor(Math.random() * (max - min) + min)
-        //in this makeCircles function, the 4 revers to the number of circles you want to make
+        //here we created a max and a min for our math.random function
+        //this will randomize the number of circles to choose from 
         //the 1 corresponds to the color level
         makeCircles(randomNum, 1)
         currentLevel = (currentLevel + 1)
@@ -217,22 +248,22 @@ const startGame = () => {
         
     }
     if(currentLevel == 2) {
-        makeCircles(6, 2)
+        makeCircles(randomNum, 2)
         currentLevel = (currentLevel + 1)
         return
     }
     else if(currentLevel == 3) {
-        makeCircles(8, 3)
+        makeCircles(randomNum, 3)
         currentLevel = (currentLevel + 1)
         return
     } 
     else if(currentLevel == 4) {
-        makeCircles(12, 4)
+        makeCircles(randomNum, 4)
         currentLevel = (currentLevel + 1)
         return
     } 
     else if(currentLevel == 5) {
-        makeCircles(5, 5)
+        makeCircles(randomNum, 5)
         currentLevel = (currentLevel + 1)
         return
     } 
