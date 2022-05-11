@@ -17,7 +17,7 @@ let correctAnswer1
 let wrongAnswer1
 
 
-
+//this is the function that displays our home screen 
 const showHomeScreen = () => {
     hideHome.style.display = "flex"
     smallContainer.appendChild(hideHome)
@@ -41,24 +41,18 @@ let hideHomeScreen = () => {
         hideHome.style.display = "none" 
     }
 
-     
-
-    
+     //this display time is up and current score when time runs out
     timeIsUpBoard.classList.add('timeIsUpBoard')
     timeIsUpBoard.innerText = "Time is up! " + " score: " + points
     container.appendChild(timeIsUpBoard);
     timeIsUpBoard.id = "timeIsUpBoard";
     
-
-   
-
-
     }
 
     
-
+//this is the initial value that we want the countdown timer to display
     let counter = 10; 
-    //countdown timer 
+    //set timeout function  
     const startCountDown = () => {
     
           const interval = setInterval(() => {
@@ -112,6 +106,10 @@ const makeCircles = (num, level) => {
             //this is the counter for my timer
             counter = 10;
             //the next three lines make and add my circles
+            //we are creating a div called circle
+            //next we are adding this newly created div to the class called 'circle'
+            //then we are appending this div to our smallcontainer
+
             circle = document.createElement('div')
             circle.classList.add('circle')
             circleContainer.appendChild(circle)
@@ -208,8 +206,12 @@ const startGame = () => {
 
 
     if(currentLevel == 1) {
-        
-        makeCircles(4, 1)
+        let min = 3
+        let max = 12
+        const randomNum = Math.floor(Math.random() * (max - min) + min)
+        //in this makeCircles function, the 4 revers to the number of circles you want to make
+        //the 1 corresponds to the color level
+        makeCircles(randomNum, 1)
         currentLevel = (currentLevel + 1)
         return currentLevel
         
