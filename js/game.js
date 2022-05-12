@@ -77,51 +77,55 @@ let hideHomeScreen = () => {
 
 
 
-      //these variables are our max and min for our randomizing function (0 - 255)
-const maxColor = 255
-const minColor = 0 
+    //these variables are our max and min for our math.random function to be used in sameColorCircle 
+    //This is so we can generate a random color each time we play each level
+    const maxColor = 255
+    const minColor = 0 
+    
+    //Each of these functions generates a random intiger for each of the rgb values to be used in sameColorCircle
+    const randColorR = Math.floor(Math.random() * (maxColor - minColor) + minColor)
+    const randColorG = Math.floor(Math.random() * (maxColor - minColor) + minColor)
+    const randColorB = Math.floor(Math.random() * (maxColor - minColor) + minColor)
 
-const minShade = 0.70    
-const maxShade = 0.80
-
-const randomShade = Math.random() * (maxShade - minShade) + minShade
-console.log('THIS IS THE randshade', randomShade)
-
-      
-const randColorR = Math.floor(Math.random() * (maxColor - minColor) + minColor)
-console.log('THIS IS THE randColorR', randColorR)
-const randColorG = Math.floor(Math.random() * (maxColor - minColor) + minColor)
-const randColorB = Math.floor(Math.random() * (maxColor - minColor) + minColor)
-
-const randomSameCircle = (r, g, b) => {
-randomRGBSame = "rgb("+ r +","+ g +","+ b +")"
-randomRGBDifferent = "rgb("+ (r *  randomShade) +","+ (g * randomShade) +","+ (b * randomShade) +")"
-return randomRGBSame
-
-}
+    //these variables are our max and min for our math.random function to be used in differentCircle function
+    //The max and min represent a range of numbers in which rgb shades are developed from 
+    //This is so we can generate a different shade for each level that is played of the current shade in sameColorCircle
+    const minShade = 0.70    
+    const maxShade = 0.80
+    //This function generates a random number between the max and min to be used in differentCircle function 
+    const randomShade = Math.random() * (maxShade - minShade) + minShade
 
 
+        
+//This function takes the random intiger generated from the randColor functions above
+//this function accepts r g and b as parameters 
+//it then returns it as a string
+//This function also applies a shade factor generated from the randomShade function to create a shade of randomRGBSame 
+    const randomSameCircle = (r, g, b) => {
+    randomRGBSame = "rgb("+ r +","+ g +","+ b +")"
+    randomRGBDifferent = "rgb("+ (r *  randomShade) +","+ (g * randomShade) +","+ (b * randomShade) +")"
+    return randomRGBSame
+    }
+
+//We call the function down here
     randomSameCircle(randColorR , randColorG , randColorB )
-    // randomDifferentCircle(randColorR , randColorG , randColorB )
 
-console.log("THIS IS THE RANDOMLY GENERATED COLOR", randomRGBSame)
-console.log("THIS IS THE RANDOMLY GENERATED DIFFERENT COLOR", randomRGBDifferent)
 
-//color levels
+// //color levels
 
-const offBlueColor = "rgb(73, 221, 235)"
+// const offBlueColor = "rgb(73, 221, 235)"
 
-const greenColor = "rgb(53, 219, 20)"
-const offGreenColor = "rgb(39, 161, 71)"
+// const greenColor = "rgb(53, 219, 20)"
+// const offGreenColor = "rgb(39, 161, 71)"
 
-const orangeColor = "rgb(237, 162, 12)"
-const offOrangeColor = "rgb(232, 185, 90)"
+// const orangeColor = "rgb(237, 162, 12)"
+// const offOrangeColor = "rgb(232, 185, 90)"
 
-const purpleColor = "rgb(90, 92, 224)"
-const offPurpleColor = "rgb(82, 84, 179)"
+// const purpleColor = "rgb(90, 92, 224)"
+// const offPurpleColor = "rgb(82, 84, 179)"
 
-const yellowColor = "rgb(207, 190, 10)"
-const offYellowColor = "rgb(255, 244, 122)"
+// const yellowColor = "rgb(207, 190, 10)"
+// const offYellowColor = "rgb(255, 244, 122)"
 
 //made circles and added color to them
 //num is the number of circles I want 
@@ -153,19 +157,19 @@ const makeCircles = (num, level) => {
                 
             }
             if (i == 1 && level == 2) {
-                circle.style.backgroundColor = offGreenColor;
+                circle.style.backgroundColor = randomRGBDifferent;
                 circle.addEventListener("click", clickCircle1Correct);  
             } 
             if (i == 2 && level == 3) {
-                circle.style.backgroundColor = offOrangeColor;
+                circle.style.backgroundColor = randomRGBDifferent;
                 circle.addEventListener("click", clickCircle1Correct);
             }
             if (i == 9 && level == 4) {
-                circle.style.backgroundColor = offPurpleColor;
+                circle.style.backgroundColor = randomRGBDifferent;
                 circle.addEventListener("click", clickCircle1Correct);  
             } 
             if (i == 0 && level == 5) {
-                circle.style.backgroundColor = offYellowColor;
+                circle.style.backgroundColor = randomRGBDifferent;
                 circle.addEventListener("click", clickCircle1Correct);
             }    
             if(i != 2 && level == 1) {
