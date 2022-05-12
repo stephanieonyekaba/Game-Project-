@@ -35,6 +35,7 @@ Containers  */
 
 #smallContainer {
     display: flex;
+    padding: 40px;
     align-items:center;
     justify-content:center;
     background-color: rgb(245, 245, 245);
@@ -43,7 +44,6 @@ Containers  */
     border-radius: 75px;
     font-size: 50px;
     flex-direction: column;
-    padding: 40px;
 }
 
 
@@ -70,15 +70,17 @@ Containers  */
     justify-content: center;
     flex-wrap: wrap;  
     flex-direction: row; 
-    width: 800px;
+    max-width: 400px;
     align-content: space-around;
+    padding: 20px;
 }
 
 
 .circle {
-    height: 140px;
-    width: 140px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
+    margin: 1.5px;
 }
 
 
