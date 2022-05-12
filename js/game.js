@@ -64,7 +64,7 @@ let hideHomeScreen = () => {
             clearInterval(interval);
             smallContainer.style.display = "none";
             timeIsUpBoard.style.display = "flex";
-            console.log("out of time");
+        
             timesUp.play();
      
           } 
@@ -84,7 +84,6 @@ let hideHomeScreen = () => {
     
     //Each of these functions generates a random intiger for each of the rgb values to be used in sameColorCircle
     let randColorR = Math.floor(Math.random() * (maxColor - minColor) + minColor)
-    console.log("THIS IS THE BASIC GAME R VAL", randColorR)
     let randColorG = Math.floor(Math.random() * (maxColor - minColor) + minColor)
     let randColorB = Math.floor(Math.random() * (maxColor - minColor) + minColor)
 
@@ -157,7 +156,27 @@ const makeCircles = (num, level) => {
             if (i == 0 && level == 5) {
                 circle.style.backgroundColor = randomRGBDifferent;
                 circle.addEventListener("click", clickCircle1Correct);
-            }    
+            }   
+            if (i == 3 && level == 6) {
+                circle.style.backgroundColor = randomRGBDifferent;
+                circle.addEventListener("click", clickCircle1Correct);
+            }  
+            if (i == 1 && level == 7) {
+                circle.style.backgroundColor = randomRGBDifferent;
+                circle.addEventListener("click", clickCircle1Correct);
+            } 
+            if (i == 4 && level == 8) {
+                circle.style.backgroundColor = randomRGBDifferent;
+                circle.addEventListener("click", clickCircle1Correct);
+            } 
+            if (i == 2 && level == 9) {
+                circle.style.backgroundColor = randomRGBDifferent;
+                circle.addEventListener("click", clickCircle1Correct);
+            } 
+            if (i == 0 && level == 10) {
+                circle.style.backgroundColor = randomRGBDifferent;
+                circle.addEventListener("click", clickCircle1Correct);
+            } 
             if(i != 2 && level == 1) {
                 circle.style.backgroundColor = randomRGBSame; 
                 circle.addEventListener("click", clickCircle1Wrong);  
@@ -175,6 +194,26 @@ const makeCircles = (num, level) => {
                 circle.addEventListener("click", clickCircle1Wrong);  
             }
             if(i != 0 && level == 5) {
+                circle.style.backgroundColor = randomRGBSame; 
+                circle.addEventListener("click", clickCircle1Wrong);  
+            }
+            if(i != 3 && level == 6) {
+                circle.style.backgroundColor = randomRGBSame; 
+                circle.addEventListener("click", clickCircle1Wrong);  
+            }
+            if(i != 1 && level == 7) {
+                circle.style.backgroundColor = randomRGBSame; 
+                circle.addEventListener("click", clickCircle1Wrong);  
+            }
+            if(i != 4 && level == 8) {
+                circle.style.backgroundColor = randomRGBSame; 
+                circle.addEventListener("click", clickCircle1Wrong);  
+            }
+            if(i != 2 && level == 9) {
+                circle.style.backgroundColor = randomRGBSame; 
+                circle.addEventListener("click", clickCircle1Wrong);  
+            }
+            if(i != 0 && level == 10) {
                 circle.style.backgroundColor = randomRGBSame; 
                 circle.addEventListener("click", clickCircle1Wrong);  
             }
@@ -219,7 +258,6 @@ const makeCircles = (num, level) => {
         let randColorR = Math.floor(Math.random() * (maxColor - minColor) + minColor)
         let randColorG = Math.floor(Math.random() * (maxColor - minColor) + minColor)
         let randColorB = Math.floor(Math.random() * (maxColor - minColor) + minColor)
-        console.log("THIS IS THE START GAME R VAL", randColorR)
         randomSameCircle(randColorR , randColorG , randColorB )
 
     guessTheCircle.classList.add('guessTheCircle')
@@ -262,6 +300,32 @@ const makeCircles = (num, level) => {
         currentLevel = (currentLevel + 1)
         return
     } 
+    else if(currentLevel == 6) {
+        makeCircles(randomNum, 6)
+        currentLevel = (currentLevel + 1)
+        return
+    } 
+    else if(currentLevel == 7) {
+        makeCircles(randomNum, 7)
+        currentLevel = (currentLevel + 1)
+        return
+    } 
+    else if(currentLevel == 8) {
+        makeCircles(randomNum, 8)
+        currentLevel = (currentLevel + 1)
+        return
+    } 
+    else if(currentLevel == 9) {
+        makeCircles(randomNum, 9)
+        currentLevel = (currentLevel + 1)
+        return
+    } 
+    else if(currentLevel == 10) {
+        makeCircles(randomNum, 10)
+        currentLevel = (currentLevel + 1)
+        return
+    } 
+
     else {
         youWin();
     }
@@ -376,7 +440,7 @@ clickCircle1Wrong = () => {
 }
   
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("hi")
+
     
     
 })
