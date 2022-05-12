@@ -58,7 +58,9 @@ let hideHomeScreen = () => {
           const interval = setInterval(() => {
             clock.textContent = counter;
             counter--;
-    
+            if (counter >= 11) {
+                clock.textContent = '';
+            }
     
          if (counter < 0 ) {
             clearInterval(interval);
