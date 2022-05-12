@@ -120,9 +120,9 @@ let hideHomeScreen = () => {
 //example: level2 calls makeCircles like this: makeCircles(6, 2)
 
 
-const makeCircles = (num, level) => {
+const makeCircles = (num, level, diffNum) => {
     //loop until desired number of circles 
-        for(let i = 0; i < num; i++) {
+        for(let i = 0; i < diffNum; i++) {
             //this is the counter for my timer
             counter = 10;
             //the next three lines make and add my circles
@@ -214,6 +214,7 @@ const makeCircles = (num, level) => {
 //it also will determine 
 
   currentLevel = 1;
+  //START GAME FUNCTION
     const startGame = () => {
         let randColorR = Math.floor(Math.random() * (maxColor - minColor) + minColor)
         let randColorG = Math.floor(Math.random() * (maxColor - minColor) + minColor)
@@ -232,12 +233,12 @@ const makeCircles = (num, level) => {
     let min = 3
     let max = 12
     const randomNum = Math.floor(Math.random() * (max - min) + min)
-    
+    const randomDiffNum = Math.floor(Math.random() * (max - min) + min)
     if(currentLevel == 1) {
     //here we created a max and a min for our math.random function
     //this will randomize the number of circles to choose from 
     //the 1 corresponds to the color level
-    makeCircles(randomNum, 1)
+    makeCircles(randomNum, 1, )
     currentLevel = (currentLevel + 1)
     return currentLevel
         
