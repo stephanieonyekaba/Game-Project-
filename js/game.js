@@ -252,7 +252,7 @@ const makeCircles = (num, level) => {
 
 //create a function that runs the startgame 
 //this function will be what calls makes circles for each level 
-//it also will determine 
+//it also will determine /
 
   currentLevel = 1;
   //START GAME FUNCTION
